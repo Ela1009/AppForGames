@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+    <style>
+        .form-wrapper {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 180, 180, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #006f75;
+            margin-bottom: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            font-weight: 600;
+            color: #005c60;
+        }
+
+        input, select {
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccecec;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #00b8b8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #009797;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 18px;
+            background-color: #e0f7f7;
+            color: #007777;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #b2f1f1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>GameApp Admin</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<a th:href="@{/admin/dashboard}" class="back-btn">BACK</a>
+
+<div class="form-wrapper">
+    <h2>Add New User</h2>
+    <form th:action="@{/admin/add-user}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="USER">USER</option>
+            <option value="REVIEWER">REVIEWER</option>
+            <option value="ADMIN">ADMIN</option>
+        </select>
+
+        <button type="submit">Create User</button>
+    </form>
+
+
+
+</div>
+
+</body>
+</html>

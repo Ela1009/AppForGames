@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Game</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <style>
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 200, 200, 0.15);
+        }
+
+        .form-container h1 {
+            color: #006f75;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            color: #004d40;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        button {
+            margin-top: 30px;
+            background-color: #00b8b8;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #009696;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>GameApp Admin</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<div class="form-container">
+    <h1>Add New Game</h1>
+    <form th:action="@{/admin/add-game}" method="post">
+        <label>Title:</label>
+        <input type="text" name="title" required>
+
+        <label>Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+
+        <label>Release Date:</label>
+        <input type="date" name="releaseDate" required>
+
+        <label>Genre:</label>
+        <input type="text" name="genre" required>
+
+        <label>Platform:</label>
+        <input type="text" name="platform" required>
+
+        <label>Developer:</label>
+        <input type="text" name="developer" required>
+
+        <label>Publisher:</label>
+        <input type="text" name="publisher" required>
+
+        <label>Cover Image URL:</label>
+        <input type="text" name="coverImageUrl" placeholder="https://example.com/cover.jpg">
+
+        <label>YouTube Trailer URL:</label>
+        <input type="text" name="youtubeTrailerUrl" placeholder="https://www.youtube.com/watch?v=...">
+
+
+        <button type="submit">Add Game</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <style>
+        .dashboard-section {
+            margin-top: 30px;
+        }
+
+        .dashboard-links li {
+            list-style-type: none;
+            margin: 8px 0;
+        }
+
+        .dashboard-links a {
+            text-decoration: none;
+            color: #00cccc;
+            font-weight: bold;
+        }
+
+        .dashboard-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <h1>GameApp - User</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<div class="dashboard-container">
+    <h2>Welcome, <span th:text="${#authentication.name}">User</span>!</h2>
+
+    <div class="dashboard-section">
+        <h3>Games</h3>
+        <ul class="dashboard-links">
+            <li><a th:href="@{/games}">View All Games</a></li>
+            <li><a th:href="@{/wishlist}">View Your Wishlist</a></li>
+        </ul>
+    </div>
+
+    <div class="dashboard-section">
+        <h3>Reviews</h3>
+        <ul class="dashboard-links">
+            <li><a th:href="@{/your-reviews}">View Your Reviews</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
+

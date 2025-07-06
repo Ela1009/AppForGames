@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body>
+<div class="auth-wrapper-fixed">
+    <div class="auth-left-fixed">
+        <img src="https://www.cato.org/sites/cato.org/files/styles/aside_3x/public/2024-04/video-games.jpg?itok=p5Uxrrkz"
+             alt="Gaming Image" />
+    </div>
+    <div class="auth-right-fixed">
+        <div class="auth-container">
+            <h2>Login</h2>
+            <form th:action="@{/auth/login}" method="post">
+                <input type="text" name="username" placeholder="Username" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <input type="submit" value="Login" />
+            </form>
+            <p style="margin-top: 20px;">
+                Don't have an account?
+                <a th:href="@{/auth/register}" style="color: #00796b; font-weight: bold;">Register here</a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${game.title}">Game Details</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <style>
+        .section {
+            margin: 40px auto;
+            max-width: 1000px;
+            background-color: #f1fefc;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0, 150, 136, 0.1);
+            padding: 30px;
+        }
+
+        .section h2 {
+            color: #00796b;
+        }
+
+        .review {
+            margin-top: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #b2dfdb;
+        }
+
+        .review:last-child {
+            border-bottom: none;
+        }
+
+        .review p {
+            margin: 5px 0;
+        }
+
+        .review strong {
+            color: #004d40;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>GameApp - Game Details</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<div class="section">
+    <h2 th:text="${game.title}">Game Title</h2>
+    <p><strong>Description:</strong> <span th:text="${game.description}">Game Description</span></p>
+    <p><strong>Release Date:</strong> <span th:text="${game.releaseDate}">2022-01-01</span></p>
+    <p><strong>Genre:</strong> <span th:text="${game.genre}">Genre</span></p>
+    <p><strong>Platform:</strong> <span th:text="${game.platform}">Platform</span></p>
+    <p><strong>Developer:</strong> <span th:text="${game.developer}">Dev</span></p>
+    <p><strong>Publisher:</strong> <span th:text="${game.publisher}">Publisher</span></p>
+
+</div>
+
+<div class="section">
+    <h2>Official Reviews</h2>
+    <div th:if="${#lists.isEmpty(criticReviews)}">No official reviews yet.</div>
+    <div th:each="review : ${criticReviews}" class="review">
+        <p><strong>Reviewer:</strong> <span th:text="${review.user.username}">Critic</span></p>
+        <p><strong>Rating:</strong> <span th:text="${review.rating}">9</span>/10</p>
+        <p><strong>Review:</strong></p>
+        <p th:text="${review.reviewText}">Review text here</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>User Reviews</h2>
+    <div th:if="${#lists.isEmpty(userReviews)}">No user reviews yet.</div>
+    <div th:each="review : ${userReviews}" class="review">
+        <p><strong>User:</strong> <span th:text="${review.user.username}">User</span></p>
+        <p><strong>Rating:</strong> <span th:text="${review.rating}">8</span>/10</p>
+        <p><strong>Review:</strong></p>
+        <p th:text="${review.reviewText}">Review text here</p>
+    </div>
+</div>
+
+<a th:href="@{/games}" class="back-link">⬅ Back to All Games</a>
+
+</body>
+</html>

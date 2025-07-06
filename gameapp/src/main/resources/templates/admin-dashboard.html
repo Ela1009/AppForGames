@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <style>
+        .admin-btn {
+            display: inline-block;
+            background-color: #00b8b8;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-bottom: 15px;
+        }
+
+        .admin-btn:hover {
+            background-color: #009696;
+            transform: scale(1.03);
+        }
+
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <h1>GameApp - Admin</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<div class="dashboard-container">
+    <h2>Welcome, <span th:text="${#authentication.name}">Admin</span>!</h2>
+    <p>This is your admin dashboard. Here you'll be able to manage users, roles, and content.</p>
+
+    <hr style="margin: 30px 0; border: none; border-top: 2px solid #b2dfdb;">
+
+    <h2>Manage Users</h2>
+
+    <h3 style="margin-top: 10px; color: #00796b;">Change Roles</h3>
+    <a th:href="@{/admin/user-management}" class="admin-btn">Change User Role</a>
+
+    <h3>Add New User</h3>
+    <a th:href="@{/admin/add-user}" class="admin-btn">Add User to Database</a>
+
+    <hr style="margin: 40px 0; border: none; border-top: 2px solid #b2dfdb;">
+
+    <h2>Manage Games</h2>
+    <h3 style="margin-top: 10px; color: #00796b;">Add Games</h3>
+    <a th:href="@{/admin/add-game}" class="admin-btn">Add New Game</a>
+
+    <h3 style="margin-top: 25px; color: #00796b;">View All Games</h3>
+    <a th:href="@{/admin/all-games}" class="admin-btn">View All Games</a>
+
+</div>
+</body>
+</html>

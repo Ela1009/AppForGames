@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Reviews</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <style>
+        .reviews-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .review-card {
+            background-color: #f1fefc;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0, 150, 136, 0.15);
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .review-card h2 {
+            margin-top: 0;
+            color: #00796b;
+        }
+
+        .review-card p {
+            margin: 6px 0;
+            color: #004d40;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #00b8b8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>GameApp - Your Reviews</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<div class="reviews-container">
+    <h2>Your Reviews</h2>
+
+    <div th:if="${#lists.isEmpty(reviews)}">
+        <p>You haven't written any reviews yet.</p>
+    </div>
+
+    <div th:each="review : ${reviews}" class="review-card">
+        <h2 th:text="${review.game.title}">Game Title</h2>
+        <p><strong>Rating:</strong> <span th:text="${review.rating}">8</span>/10</p>
+        <p><strong>Your Review:</strong></p>
+        <p th:text="${review.reviewText}">Review text goes here.</p>
+    </div>
+
+    <a th:href="@{/user/dashboard}" class="back-link">⬅ Back to Dashboard</a>
+</div>
+
+</body>
+</html>

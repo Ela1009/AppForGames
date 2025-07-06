@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Write Review</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>GameApp - Write Review</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<div class="dashboard-container">
+    <h2 th:text="'Review: ' + ${game.title}">Game Title</h2>
+
+    <form th:action="@{'/games/' + ${game.id} + '/review'}" th:object="${review}" method="post">
+        <label>Rating (1-10):</label><br>
+        <input type="number" th:field="*{rating}" min="1" max="10" required><br><br>
+
+        <label>Review:</label><br>
+        <textarea th:field="*{reviewText}" rows="5" cols="50" required></textarea><br><br>
+
+        <button type="submit" class="admin-btn">Submit Review</button>
+    </form>
+
+    <a th:href="@{/games}" class="back-link">⬅ Back to All Games</a>
+</div>
+
+</body>
+</html>

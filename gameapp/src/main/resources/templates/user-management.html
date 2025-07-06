@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}"> <!-- koristi isti stil kao dashboard -->
+
+    <style>
+        .main-content {
+            padding: 40px;
+            max-width: 1100px;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 200, 200, 0.15);
+        }
+
+        h1 {
+            color: #006f75;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #f8fefe;
+            box-shadow: 0 0 10px rgba(0, 200, 200, 0.15);
+        }
+
+        th, td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e0f4f4;
+        }
+
+        th {
+            background-color: #c4f5f3;
+            color: #003c3c;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ecfefe;
+        }
+
+        tr:hover {
+            background-color: #dafafa;
+        }
+
+        .promote-btn {
+            background-color: #00b8b8;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+
+        .promote-btn:hover {
+            background-color: #009696;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 18px;
+            background-color: #e0f7f7;
+            color: #007777;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #b2f1f1;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Navigacija -->
+<div class="navbar">
+    <h1>GameApp Admin</h1>
+    <form th:action="@{/auth/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<!-- Sadržaj -->
+<div class="main-content">
+    <h1>User Management</h1>
+
+    <a th:href="@{/admin/dashboard}" class="back-btn">BACK</a>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}">username</td>
+            <td th:text="${user.email}">email</td>
+            <td th:text="${user.role}">role</td>
+            <td>
+                <form th:action="@{'/admin/promote/' + ${user.id}}" method="post"
+                      th:if="${user.role.name() == 'USER'}">
+                    <button type="submit" class="promote-btn">Promote to reviewer</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

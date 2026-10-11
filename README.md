@@ -114,14 +114,3 @@ Thymeleaf renders HTML views on the server.
 ```
 
 Spring Security handles authentication, while application services implement operations such as watchlist management and review ownership checks.
-
-## Potential improvements
-
-- Move database credentials to environment variables and clean up any publicly exposed credentials.
-- Review route-level authorization and enable appropriate CSRF protection for form submissions.
-- Add automated unit and integration tests for roles, watchlists, reviews, and movie search.
-- Add screenshots of the application and document sample development data.
-
-## Project status
-
-Personal learning / portfolio project. The implementation has been reviewed from source code, but its full functionality has not been verified by running it in a fresh environment.
